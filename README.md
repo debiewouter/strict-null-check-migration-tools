@@ -1,6 +1,6 @@
 This repository contains scripts that Figma used to migrate its TypeScript codebase to use `--strictNullChecks`.
 
-These scripts were originally forked from https://github.com/mjbvz/vscode-strict-null-check-migration-tools
+These scripts were originally forked from https://github.com/mjbvz/vscode-strict-null-check-migration-tools and https://github.com/figma/strict-null-check-migration-tools
 
 # How to use
 
