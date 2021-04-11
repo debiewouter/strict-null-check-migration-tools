@@ -14,7 +14,7 @@ export function findCycles(srcRoot: string, files: string[]): string[][] {
 
   // Step 1: do a post-order traversal of the dependency tree
   const visit = (file: string) => {
-    if (!imports.has(file)) {
+    if (!imports.has(file) && !file.includes('node_modules')) {
       const importList = getImportsForFile(file, srcRoot)
       imports.set(file, importList)
 

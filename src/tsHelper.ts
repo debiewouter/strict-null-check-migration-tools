@@ -13,7 +13,7 @@ export function getImportsForFile(file: string, srcRoot: string) {
   // Follow symlink so directory check works.
   file = fs.realpathSync(file)
 
-  if (fs.lstatSync(file).isDirectory()) {
+  if (fs.lstatSync(file).isDirectory() && !file.includes('node_modules')) {
     const index = path.join(file, "index.ts")
     if (fs.existsSync(index)) {
       // https://basarat.gitbooks.io/typescript/docs/tips/barrel.html
@@ -75,8 +75,11 @@ export class ImportTracker {
     if (this.imports.has(file)) {
       return this.imports.get(file)
     }
-    const imports = getImportsForFile(file, this.srcRoot)
-    this.imports.set(file, imports)
+    let imports = [];
+    if(!file.includes('node_modules')) {
+      imports = getImportsForFile(file, this.srcRoot)
+      this.imports.set(file, imports)
+    }
     return imports
   }
 }
