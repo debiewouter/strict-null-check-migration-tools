@@ -11,6 +11,7 @@ tryAutoAddStrictNulls()
 
 async function tryAutoAddStrictNulls() {
   let hasAddedFile = true
+  console.log(srcRoot)
   const checkedFiles = await getCheckedFiles(tsconfigPath, srcRoot)
 
   const errorCounter = new ErrorCounter(tsconfigPath)

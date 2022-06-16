@@ -6,6 +6,12 @@ export function normalizeTsconfigPath(tsconfigPath: string) {
   return path.resolve(tsconfigPath);
 }
 
+function replacer(match, p1, p2, p3, p4, p5, offset, string) {
+
+  const path = p2 != null ? `packages/${p2}/src/${p3}` : `packages/${p5}/src`
+  return path
+}
+
 /**
  * Given a file, return the list of files it imports as absolute paths.
  */
@@ -42,6 +48,12 @@ export function getImportsForFile(file: string, srcRoot: string) {
     .map(fileName => {
       if (/(^\.\/)|(^\.\.\/)/.test(fileName)) {
         return path.join(path.dirname(file), fileName)
+      }
+      if (/(^@dvpub)/.test(fileName)) {
+
+        const l = fileName.replace(/(@dvpub)\/([^\/])\/(.*)|(@dvpub)\/([^\/]*)/,replacer)
+        const newPath = path.join(srcRoot, l)
+        return newPath
       }
       return path.join(srcRoot, fileName);
     }).map(fileName => {

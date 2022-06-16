@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Scripts used to migrate DCImanager's codebase to strictNullChecks",
   "scripts": {
-    "find-candidates": "tsc && node src/findCandidates.js",
-    "auto-add": "tsc && node src/autoAdd.js",
-    "find-cycles": "tsc && node src/runFindCycles.js",
-    "visualize": "tsc && node src/visualize.js"
+    "find-candidates": "yarn run tsc && node src/findCandidates.js",
+    "auto-add": "yarn run tsc && node src/autoAdd.js",
+    "find-cycles": "yarn run tsc && node src/runFindCycles.js",
+    "visualize": "yarn run tsc && node src/visualize.js"
   },
   "keywords": [
     "strict",
